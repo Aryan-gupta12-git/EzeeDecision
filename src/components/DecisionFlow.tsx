@@ -51,7 +51,7 @@ export const DecisionFlow: React.FC<DecisionFlowProps> = ({ onComplete, onBackTo
     setFlowStage('fetching_questions');
     setError('');
     try {
-      const response = await fetch('http://localhost:5001/api/questions', {
+      const response = await fetch('/api/questions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ decision: decisionText }),
