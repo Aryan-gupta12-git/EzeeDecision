@@ -12,31 +12,47 @@ const ai = new GoogleGenAI({ apiKey: apiKey || '' });
 export class GeminiService implements AIService {
   async generateQuestions(decision: string): Promise<string[]> {
     const prompt = `
-You are a thoughtful, calm, and rational advisor. The user is trying to make the following decision: "${decision}".
+You are a thoughtful, calm, and rational advisor, decision coach, and mentor. The user is trying to make the following decision: "${decision}".
 
-Generate 6 to 8 personalized, deeply reflective questions that the user should answer to make a sound decision.
+Generate a sequence of 6 to 8 highly personalized, progressive, and deeply reflective questions that the user should answer to make a sound decision.
 
-Follow these strict rules for every question generated:
-- Make every question short, clear, and easy to read.
-- Keep every question between 8 and 15 words (absolute maximum of 18 words).
-- Use simple English and a direct, conversational tone.
-- Ask exactly ONE question at a time. Do not combine multiple questions or add sub-questions in a single item.
-- Avoid unnecessary explanations, preambles, or background information.
-- Avoid repeating information.
-- Use natural, conversational language (like a thoughtful mentor).
-- Ensure the questions flow logically, only asking what is necessary to reach a confident recommendation.
+Follow these guidelines to generate the questions:
+- Avoid generic, checklist-style questions (such as "Why do you want this?", "Is this a need or a want?", or "Can you afford it?").
+- Dig deeper into the reasoning behind the decision. Challenge the user's thinking, reveal hidden assumptions, expose impulsive thinking, and encourage self-reflection.
+- The list of questions must flow like an intelligent, progressive conversation. Each question should build logically on the context established by the previous questions in the sequence, as if you are listening to their progressive answers and asking follow-ups.
+- Tailor the questions specifically to the nature of the decision.
+  - If the decision is about purchasing (e.g., "I want to buy a MacBook"), ask about upgrading current alternatives, specific unmet needs, comparative value, and non-financial motives.
+  - If the decision is about career changes (e.g., "I want to quit my job"), explore the root causes (role, company, or work itself), what would convince them to stay, preparation level, and the cost of inaction.
+  - If the decision is about starting a business (e.g., "I want to start a business"), probe their biggest assumptions, first customers, risk mitigation, and financial runway.
+- Prioritize clarity and relevance over strict length limits. Questions can be as short or as long as necessary to guide the user to think deeply.
 
-Example Conversational Styling:
-- Bad (too long): "Could you explain what specific reasons are motivating you to consider purchasing this product at this particular point in time?"
-- Good (concise): "Why do you want to buy this now?"
-- Bad (too long): "What potential long-term impact do you believe this decision will have on your personal and professional life over the coming months?"
-- Good (concise): "How could this decision affect you in six months?"
-- Bad (too long): "Considering your current financial situation, would making this purchase create any financial pressure or compromise your future plans?"
-- Good (concise): "Can you comfortably afford this?"
-- Bad (too long): "Have you explored any possible alternatives before deciding that this is the best option available to you?"
-- Good (concise): "Have you considered other options?"
+Example Scenarios and Desired Question Styles:
 
-Return the output as a JSON object containing a single key "questions" which is an array of strings. 
+Scenario 1: "I want to buy a MacBook (because my current laptop is slow)"
+- Avoid generic: "Why do you want a MacBook?" / "Is this a need or a want?"
+- Preferred (progressive/context-aware):
+  1. "What's stopping you from upgrading your current laptop instead?"
+  2. "Which specific tasks does your current laptop fail to handle?"
+  3. "Have you compared a MacBook with other laptops that meet your needs?"
+  4. "If money wasn't a factor, would you still choose the MacBook? Why?"
+
+Scenario 2: "I want to quit my job"
+- Avoid generic: "Why?" / "Do you have another job?"
+- Preferred (progressive/context-aware):
+  1. "Is it the company, the role, or the work itself that's making you leave?"
+  2. "What would convince you to stay?"
+  3. "Have you secured another opportunity?"
+  4. "If nothing changes in six months, how would you feel?"
+
+Scenario 3: "I want to start a business"
+- Avoid generic: "Do you have a business plan?" / "What is your budget?"
+- Preferred (progressive/context-aware):
+  1. "What's the biggest assumption you're making about this idea?"
+  2. "Who would be your first paying customer?"
+  3. "What's the biggest risk if this doesn't work?"
+  4. "How long can you sustain yourself without profit?"
+
+Return the output as a JSON object containing a single key "questions" which is an array of strings.
 Do not include any markdown formatting (like \`\`\`json) or text outside the JSON object.
 `;
 
