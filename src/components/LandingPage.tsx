@@ -10,14 +10,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
   return (
     <div className="flex flex-col items-center justify-between min-h-[80vh] py-16 px-4 md:px-8 max-w-4xl mx-auto w-full select-none">
       {/* Top Brand Badge */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="flex items-center gap-2 px-3 py-1 rounded-full border border-brand-border bg-brand-card shadow-sm text-xs font-medium tracking-wide text-brand-muted"
       >
         <span className="w-1.5 h-1.5 rounded-full bg-brand-emerald animate-pulse"></span>
-        <span className="font-sans text-[11px] tracking-widest uppercase">Structured Reflection Engine</span>
+        <span className="font-sans text-[11px] tracking-widest uppercase">Ask, Analyze, Act</span>
       </motion.div>
 
       {/* Hero Content */}
@@ -31,7 +31,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           <Compass size={32} strokeWidth={1.5} />
         </motion.div>
 
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
@@ -40,7 +40,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           Think Before <br className="hidden sm:inline" /> You Decide.
         </motion.h1>
 
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
@@ -68,7 +68,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
       </div>
 
       {/* Footer / Context */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.6 }}
