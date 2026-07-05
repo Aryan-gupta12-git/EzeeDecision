@@ -13,8 +13,28 @@ export class GeminiService implements AIService {
   async generateQuestions(decision: string): Promise<string[]> {
     const prompt = `
 You are a thoughtful, calm, and rational advisor. The user is trying to make the following decision: "${decision}".
-Generate 6 to 8 personalized, deeply reflective questions that the user should answer to make a sound decision. 
-The questions must be highly customized to the specific nature of the decision. For example, if the decision is about purchasing, ask about alternatives, financial comfort, and necessity. If it is about career change, ask about motivations, risk, and long-term trajectory.
+
+Generate 6 to 8 personalized, deeply reflective questions that the user should answer to make a sound decision.
+
+Follow these strict rules for every question generated:
+- Make every question short, clear, and easy to read.
+- Keep every question between 8 and 15 words (absolute maximum of 18 words).
+- Use simple English and a direct, conversational tone.
+- Ask exactly ONE question at a time. Do not combine multiple questions or add sub-questions in a single item.
+- Avoid unnecessary explanations, preambles, or background information.
+- Avoid repeating information.
+- Use natural, conversational language (like a thoughtful mentor).
+- Ensure the questions flow logically, only asking what is necessary to reach a confident recommendation.
+
+Example Conversational Styling:
+- Bad (too long): "Could you explain what specific reasons are motivating you to consider purchasing this product at this particular point in time?"
+- Good (concise): "Why do you want to buy this now?"
+- Bad (too long): "What potential long-term impact do you believe this decision will have on your personal and professional life over the coming months?"
+- Good (concise): "How could this decision affect you in six months?"
+- Bad (too long): "Considering your current financial situation, would making this purchase create any financial pressure or compromise your future plans?"
+- Good (concise): "Can you comfortably afford this?"
+- Bad (too long): "Have you explored any possible alternatives before deciding that this is the best option available to you?"
+- Good (concise): "Have you considered other options?"
 
 Return the output as a JSON object containing a single key "questions" which is an array of strings. 
 Do not include any markdown formatting (like \`\`\`json) or text outside the JSON object.
